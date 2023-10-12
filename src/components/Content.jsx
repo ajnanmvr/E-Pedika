@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Axios from '../../Axios';
+import Axios from '../Axios';
 import Card from './Card';
 import SideBar from './SideBar';
 
@@ -24,8 +24,8 @@ function Content() {
       <div className="content-main">
         <div className="card-grid">
           {cards.length > 0 ? (
-            cards.map((card,key) => (
-              <Card key={key} card={card} />
+            cards.map((data,key) => (
+              <Card key={key} data={data} />
             ))
           ) : (
             <p>Loading data..</p>

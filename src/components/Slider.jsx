@@ -1,4 +1,4 @@
-import Axios from "../../Axios";
+import Axios from "../Axios";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
