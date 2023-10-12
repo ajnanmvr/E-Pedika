@@ -8,7 +8,6 @@ const AddCategory = ({ apiUrl }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
-
   const [showEditForm, setShowEditForm] = useState(false);
   const [editCategory, setEditCategory] = useState({ id: null, name: "" });
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../Axios";
+import slugify from "slugify";
 
 const FormComponent = ({ apiUrl }) => {
   const [name, setName] = useState("");
-  const [thumbnail, setThumbnail] = useState(null); // Updated state to handle the thumbnail file
+  const [thumbnail, setThumbnail] = useState(null);
   const [description, setDescription] = useState("");
   const [url, setUrl] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -11,6 +12,10 @@ const FormComponent = ({ apiUrl }) => {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
+  const [slug, setSlug] = useState(""); // Add state for the "slug" field
+  const [price, setPrice] = useState("");
+  const [discountPrice, setDiscountPrice] = useState("");
+  const [specs, setSpecs] = useState([]);
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -19,32 +24,38 @@ const FormComponent = ({ apiUrl }) => {
     setLoading(true);
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("thumbnail", thumbnail); // Append the thumbnail file to the form data
+    formData.append("thumbnail", thumbnail);
     formData.append("description", description);
     formData.append("url", url);
     formData.append("category", category);
+    formData.append("slug", slug);
+    formData.append("price", price);
+    formData.append("discountPrice", discountPrice);
+    specs.forEach((spec, index) => {
+      formData.append(`specs[${index}]`, spec);
+    });
 
     try {
-      // Send a POST request to your Express.js backend using Axios
       const response = await Axios.post(apiUrl, formData, {
-        headers: { "Content-Type": "multipart/form-data" }, // Important to set the correct Content-Type
+        headers: { "Content-Type": "multipart/form-data" },
       });
       setLoading(false);
-      // Reset form fields
       setName("");
       setThumbnail(null);
       setDescription("");
       setUrl("");
-
-      // Display success message
+      setCategory("");
+      setSlug("");
+      setPrice("");
+      setDiscountPrice("");
+      setSpecs([]);
       setSuccessMessage("Post completed successfully.");
-      setErrorMessage(""); // Clear any previous error message
+      setErrorMessage("");
     } catch (error) {
       setLoading(false);
       console.error(error.response);
-      // Display error message
       setErrorMessage("An error occurred. Please try again.");
-      setSuccessMessage(""); // Clear any previous success message
+      setSuccessMessage("");
     }
   };
 
@@ -52,10 +63,12 @@ const FormComponent = ({ apiUrl }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    // Update the corresponding state variable based on the input field's name
     switch (name) {
       case "name":
         setName(value);
+        // Automatically generate the slug from the name
+        const generatedSlug = slugify(value, { lower: true, strict: true });
+        setSlug(generatedSlug);
         break;
       case "description":
         setDescription(value);
@@ -65,6 +78,15 @@ const FormComponent = ({ apiUrl }) => {
         break;
       case "category":
         setCategory(value);
+        break;
+      case "slug":
+        setSlug(value);
+        break;
+      case "price":
+        setPrice(value);
+        break;
+      case "discountPrice":
+        setDiscountPrice(value);
         break;
       default:
         break;
@@ -77,12 +99,24 @@ const FormComponent = ({ apiUrl }) => {
     setThumbnail(file);
   };
 
+  // Handle specs input changes
+  const handleSpecsChange = (e, index) => {
+    const newSpecs = [...specs];
+    newSpecs[index] = e.target.value;
+    setSpecs(newSpecs);
+  };
+
+  // Add a new spec input field
+  const addSpec = () => {
+    const newSpecs = [...specs, ""];
+    setSpecs(newSpecs);
+  };
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        // Make a GET request to the backend API endpoint to fetch categories
         const response = await Axios.get("/category");
-        setCategories(response.data); // Set the fetched categories to the state
+        setCategories(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -95,18 +129,7 @@ const FormComponent = ({ apiUrl }) => {
     <div className="">
       <h1 className="form-header-addproduct mb-90">Add New Website</h1>
       <form className="form-container" onSubmit={handleSubmit}>
-        <label>
-          Website Link:
-          <input
-            type="url"
-            name="url"
-            value={url}
-            onChange={handleInputChange}
-            placeholder="Enter URL"
-          />
-        </label>
-        <br />
-        <label>
+      <label>
           Name:
           <input
             type="text"
@@ -128,6 +151,56 @@ const FormComponent = ({ apiUrl }) => {
             placeholder="Enter description"
           />
         </label>
+
+        <label>
+          Slug:
+          <input
+            type="text"
+            name="slug"
+            value={slug}
+            onChange={handleInputChange}
+            placeholder="Enter slug"
+          />
+        </label>
+        <br />
+        <label>
+          Price:
+          <input
+            type="number"
+            name="price"
+            value={price}
+            onChange={handleInputChange}
+            placeholder="Enter price"
+          />
+        </label>
+        <br />
+        <label>
+          Discount Price:
+          <input
+            type="number"
+            name="discountPrice"
+            value={discountPrice}
+            onChange={handleInputChange}
+            placeholder="Enter discount price"
+          />
+        </label>
+        <br />
+        {/* Add input fields for specs */}
+        <div className="mb-4">
+          <label className="block font-bold text-gray-700">Specs:</label>
+          {specs.map((spec, index) => (
+            <input
+              key={index}
+              type="text"
+              value={spec}
+              onChange={(e) => handleSpecsChange(e, index)}
+              placeholder={`Spec ${index + 1}`}
+            />
+          ))}
+          <button type="button" onClick={addSpec}>
+            Add Spec
+          </button>
+        </div>
         <div className="mb-4">
           <label className="block font-bold text-gray-700">Category:</label>
           <select
