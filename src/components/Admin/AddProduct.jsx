@@ -5,14 +5,14 @@ import slugify from "slugify";
 const FormComponent = ({ apiUrl }) => {
   const [name, setName] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
+  const [thumbnailPreview, setThumbnailPreview] = useState(null); // For image preview
   const [description, setDescription] = useState("");
-  const [url, setUrl] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
-  const [slug, setSlug] = useState(""); // Add state for the "slug" field
+  const [slug, setSlug] = useState("");
   const [price, setPrice] = useState("");
   const [discountPrice, setDiscountPrice] = useState("");
   const [specs, setSpecs] = useState([]);
@@ -26,7 +26,6 @@ const FormComponent = ({ apiUrl }) => {
     formData.append("name", name);
     formData.append("thumbnail", thumbnail);
     formData.append("description", description);
-    formData.append("url", url);
     formData.append("category", category);
     formData.append("slug", slug);
     formData.append("price", price);
@@ -43,7 +42,6 @@ const FormComponent = ({ apiUrl }) => {
       setName("");
       setThumbnail(null);
       setDescription("");
-      setUrl("");
       setCategory("");
       setSlug("");
       setPrice("");
@@ -73,9 +71,7 @@ const FormComponent = ({ apiUrl }) => {
       case "description":
         setDescription(value);
         break;
-      case "url":
-        setUrl(value);
-        break;
+
       case "category":
         setCategory(value);
         break;
@@ -97,6 +93,13 @@ const FormComponent = ({ apiUrl }) => {
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     setThumbnail(file);
+
+    // For image preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      setThumbnailPreview(reader.result);
+    };
+    reader.readAsDataURL(file);
   };
 
   // Handle specs input changes
@@ -219,7 +222,6 @@ const FormComponent = ({ apiUrl }) => {
         </div>
         <br />
 
-        {/* Input field for the thumbnail file */}
         <label>
           Thumbnail:
           <input
@@ -229,7 +231,13 @@ const FormComponent = ({ apiUrl }) => {
           />
         </label>
         <br />
-
+        {thumbnailPreview && (
+          <img
+            src={thumbnailPreview}
+            alt="Thumbnail Preview"
+            className="thumbnail-preview"
+          />
+        )}
         {loading ? (
           <div className="" >processing...</div>
         ) : (

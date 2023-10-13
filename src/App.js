@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AdminLogin from "./components/Admin/AdminLogin";
 import AdminTable from "./components/Admin/Table";
+import ViewProduct from "./components/ViewProduct";
 import Home from "./components/Home";
 import List from "./components/List";
 import AddProduct from "./components/Admin/AddProduct";
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/list" element={<List />} />
+        <Route path="/list/:slug" element={<ViewProduct />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route
           path="/admin/data"

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Card = ({ card }) => {
   return (
-    <Link>
+    <Link to={`/list/${card.slug}`}>
       <div className="h-80 w-56 rounded-lg border overflow-hidden flex flex-col justify-between">
         <img
           src={card.thumbnail}
@@ -18,9 +18,9 @@ const Card = ({ card }) => {
           </p>
           <p className=" mt-2 flex items-center gap-2">
             <span className="text-primary  text-sm bg-white border-2 font-bold rounded-lg border-dotted py-2 px-3 border-primary">
-              Rs. 330
+              Rs. {card.discountPrice}
             </span>
-            <span className="text-sm line-through text-slate-600">Rs.400</span>
+            <span className="text-sm line-through text-slate-600">Rs.{card.price}</span>
           </p>
         </div>
       </div>
