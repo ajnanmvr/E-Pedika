@@ -13,6 +13,7 @@ import AdminRoute from "./components/Admin/AdminRoute";
 import { UserContext } from "./contexts/UserContext";
 import Dashboard from "./components/Admin/Dashboard";
 import AddCategory from "./components/Admin/AddCategory";
+import Contact from "./components/Contact";
 
 function App() {
   const { getUserDataFromLocalStorage } = useContext(UserContext);
@@ -44,6 +45,10 @@ function App() {
             <Route
               path="/search"
               element={<List category={"All"} />}
+            />
+            <Route
+              path="/contact-us"
+              element={<Contact/>}
             />
             <Route path="/item/:slug" element={<ViewProduct />} />
             <Route path="/login" element={<AdminLogin />} />
