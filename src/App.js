@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect,useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AdminLogin from "./components/Admin/AdminLogin";
 import AdminTable from "./components/Admin/Table";
@@ -13,6 +13,7 @@ import AdminRoute from "./components/Admin/AdminRoute";
 import { UserContext } from "./contexts/UserContext";
 import Dashboard from "./components/Admin/Dashboard";
 import AddCategory from "./components/Admin/AddCategory";
+
 function App() {
   const { getUserDataFromLocalStorage } = useContext(UserContext);
 

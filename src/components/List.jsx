@@ -8,15 +8,15 @@ function List({ category }) {
   useEffect(() => {
     Axios.get("/data")
       .then((response) => {
-        const allCards = response.data.data;
+        const fullData = response.data.data;
 
         if (category === "All") {
           // If category is "All," show all data
-          setCards(allCards);
+          setCards(fullData);
         } else {
           // Filter data based on the category
-          const filteredCards = allCards.filter((card) => card.category.name === category);
-          setCards(filteredCards);
+          const filteredData = fullData.filter((card) => card.category.name === category);
+          setCards(filteredData);
         }
 
         console.log(cards); // This may not show the updated state immediately
