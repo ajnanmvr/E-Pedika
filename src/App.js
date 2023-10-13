@@ -25,8 +25,12 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/list" element={<List />} />
-        <Route path="/list/:slug" element={<ViewProduct />} />
+        <Route path="/items" element={<List category={"All"}/>} />
+        <Route path="/essentials" element={<List category={"Essentials"}/>} />
+        <Route path="/stationary" element={<List category={"Stationary"}/>} />
+        <Route path="/book-cell" element={<List category={"Books"}/>} />
+        <Route path="/tea-stall" element={<List category={"Tea Stall"}/>} />
+        <Route path="/item/:slug" element={<ViewProduct />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route
           path="/admin/data"

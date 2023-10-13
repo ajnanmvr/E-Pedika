@@ -2,19 +2,29 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import Axios from "../Axios";
 
-function List() {
+function List({ category }) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
     Axios.get("/data")
       .then((response) => {
-        setCards(response.data.data);
-        console.log(response.data.data);
+        const allCards = response.data.data;
+
+        if (category === "All") {
+          // If category is "All," show all data
+          setCards(allCards);
+        } else {
+          // Filter data based on the category
+          const filteredCards = allCards.filter((card) => card.category.name === category);
+          setCards(filteredCards);
+        }
+
+        console.log(cards); // This may not show the updated state immediately
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [category]); // Make sure to include category as a dependency
 
   return (
     <div className="p-16">
