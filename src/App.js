@@ -82,7 +82,7 @@ function App() {
               }
             />
             <Route
-              path="/admin/add-category"
+              path="/admin/category"
               element={
                 <AdminRoute>
                   <AddCategory />
