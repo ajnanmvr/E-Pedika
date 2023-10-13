@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import { UserContext } from "../contexts/UserContext";
 function Header() {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const { user } = useContext(UserContext);
   const path = location.pathname;
   const [searchText, setSearchText] = useState("");
 
@@ -107,33 +107,7 @@ function Header() {
                     Tea Stall
                   </Link>
                 </li>
-              </>
-            )}
-            {path === "/search" && (
-              <li>
-                <div style={{ position: "relative" }}>
-                  <input
-                    type="text"
-                    className="border-2 px-4 py-2 border-primary rounded-xl min-w-[30vw]"
-                    placeholder="Search Here"
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                  />
-
-                  <button onClick={handleGoBack} className="-m-8">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="1em"
-                      viewBox="0 0 384 512"
-                      className="fill-slate-400 hover:fill-primary"
-                    >
-                      <path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z" />
-                    </svg>
-                  </button>
-                </div>
-              </li>
-            )}
-            <li>
+                <li>
               <Link
                 to={`/search`}
                 className={`${
@@ -149,6 +123,33 @@ function Header() {
                 </svg>
               </Link>
             </li>
+              </>
+            )}
+            {path === "/search" && (
+              <li>
+                <div>
+                  <input
+                    type="text"
+                    className="border-2 px-4 -mr-7 py-2 border-primary rounded-xl min-w-[30vw]"
+                    placeholder="Search Here"
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                  />
+
+                  <button onClick={handleGoBack} className="mr-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="1em"
+                      viewBox="0 0 384 512"
+                      className="fill-slate-400 hover:fill-primary"
+                    >
+                      <path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z" />
+                    </svg>
+                  </button>
+                </div>
+              </li>
+            )}
+
             <li>
               <Link
                 to={`/contact-us`}
@@ -158,6 +159,49 @@ function Header() {
               >
                 Contact Us
               </Link>
+            </li>
+            <li>
+              {user?.role === "admin" ? (
+                <Link
+                  to={`/admin/dashboard`}
+                  className={`${
+                    path === "/admin/dashboard" &&
+                    "fill-primary text-primary border-primary"
+                    
+                  } ${
+                    path !== "/admin/dashboard" &&
+                    "border-black"
+                    
+                  } flex cursor-pointer items-center border-2 rounded-full py-1 px-3 gap-1`}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1em"
+                    viewBox="0 0 448 512"
+                    className=""
+                  >
+                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                  </svg>
+                  <span className="font-semibold">Admin</span>
+                </Link>
+              ) : (
+                <Link
+                  to={`/login`}
+                  className={`${
+                    path === "/login" &&
+                    "fill-primary text-primary border-primary"
+                  } flex cursor-pointer items-center border-2 rounded-full p-2 mx-2`}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1em"
+                    viewBox="0 0 448 512"
+                    className=""
+                  >
+                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                  </svg>
+                </Link>
+              )}
             </li>
           </ul>
         </nav>
