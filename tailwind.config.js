@@ -14,7 +14,7 @@ module.exports = {
       },
       colors: {
         primary: '#38176B',     // Define your primary color
-        secondary: 'your-secondary-color', // Define your secondary color
+        secondary: '#481795', // Define your secondary color
       },
     },
   },

@@ -15,9 +15,19 @@ function Header() {
     navigate(-1);
   };
   return (
-    <header className="flex justify-between px-12 py-8 items-center content-center sticky top-0 bg-white">
+    <header
+      className={`flex ${
+        path === "/"
+          ? "flex-col gap-6 justify-center p-12 text-lg"
+          : "justify-between px-12 py-8 sticky top-0"
+      } items-center content-center bg-white`}
+    >
       <Link to={`/`}>
-        <img src="/logos/logo.png" alt="Logo" className="h-12 cursor-pointer" />
+        <img
+          src="/logos/logo.png"
+          alt="Logo"
+          className={`${path === "/" ? "h-16" : "h-12"} cursor-pointer`}
+        />
       </Link>
 
       <div className="">
