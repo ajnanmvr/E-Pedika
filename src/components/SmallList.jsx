@@ -40,7 +40,7 @@ function SmallList({ heading, fullData, sortOption }) {
     setSortedCards(sortedCardsCopy);
   };
   return (
-    <section className="h-screen flex justify-center items-center content-center flex-col ">
+    <section className="flex justify-center items-center content-center flex-col my-10">
       <h1 className="text-center font-bold text-3xl text-black">{heading}</h1>
         <div className="flex justify-center gap-5 flex-wrap p-16">
           {sortedCards.length > 0 ? (

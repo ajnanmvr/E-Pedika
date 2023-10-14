@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
+
 function Slider() {
   return (
     <section className="bg-primary text-white rounded-[100px] mx-24 flex h-96 items-center mb-24 overflow-hidden">

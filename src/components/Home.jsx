@@ -10,7 +10,7 @@ function Home({fullData}) {
       <Slider />
       <ShopByCategory/>
       <SmallList heading={"Latest Products"} sortOption={"newest"} fullData={fullData} />
-      <SmallList heading={"Special Offer"} sortOption={"price-asc"} fullData={fullData} />
+      <SmallList heading={"Lowest in Price"} sortOption={"price-asc"} fullData={fullData} />
     </div>
   );
 }

@@ -23,32 +23,33 @@ export default function ProductDetail() {
 
   return (
     <div className="flex justify-center gap-20 pt-10 pb-16">
-      <div className="h-[500px] w-[500px]">
-        <img
-          src={product.thumbnail}
-          alt="Thumbnail"
-          className="h-full w-full object-cover rounded-lg"
-        />
+      <div className="h-[500px] w-[500px] overflow-hidden rounded-lg cursor-zoom-in">
+        <div className="h-[500px] w-[500px] transform hover:scale-125 transition-transform duration-300">
+          <img
+            src={product.thumbnail}
+            alt="Thumbnail"
+            className="h-full w-full object-cover"
+          />
+        </div>
       </div>
+
       <div className="p-3 h-[500px] w-[500px]">
         <h2 className="font-bold text-3xl">{product.name}</h2>
         <p className="inline-block mt-3 bg-primary rounded-xl px-3 py-1 text-sm font-semibold text-white">
-          {product.category}
+          {product.category.name}
         </p>
 
         <p className="text-slate-600 text-sm leading-4 mt-2">
           {product.description}
         </p>
-        {product.specs.map(
-          (spec, i)=>(
-            <span
-              key={i}
-              className="inline-block mt-3  rounded-full border border-primary px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-            >
-              #{spec}
-            </span>
-          )
-        )}
+        {product.specs.map((spec, i) => (
+          <span
+            key={i}
+            className="inline-block mt-3  rounded-full border border-primary px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+          >
+            #{spec}
+          </span>
+        ))}
         <p className="mt-2 flex items-center gap-2">
           {product.discountPrice < product.price ? (
             <>

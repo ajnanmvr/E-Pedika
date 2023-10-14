@@ -1,24 +1,21 @@
-import React, { useState, useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, {  useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 function Header() {
   const location = useLocation();
-  const navigate = useNavigate();
+
   const { user } = useContext(UserContext);
   const path = location.pathname;
-  const [searchText, setSearchText] = useState("");
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.href = "/";
   };
-  const handleGoBack = () => {
-    navigate(-1);
-  };
+
   return (
     <header
       className={`flex z-50 ${
         path === "/"
-          ? "flex-col gap-6 justify-center p-12 text-lg"
+          ? "flex-col gap-6 justify-center p-12"
           : "justify-between px-12 py-8 sticky top-0"
       } ${
         path === "/login"&& "hidden"
@@ -35,8 +32,7 @@ function Header() {
       <div className="">
         <nav>
           <ul className="flex gap-6 items-center">
-            {path !== "/search" && (
-              <>
+
                 <li>
                   <Link
                     to={`/items`}
@@ -138,32 +134,7 @@ function Header() {
                     </svg>
                   </Link>
                 </li>
-              </>
-            )}
-            {path === "/search" && (
-              <li>
-                <div>
-                  <input
-                    type="text"
-                    className="border-2 px-4 -mr-7 py-2 border-primary rounded-xl min-w-[30vw]"
-                    placeholder="Search Here"
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                  />
 
-                  <button onClick={handleGoBack} className="mr-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="1em"
-                      viewBox="0 0 384 512"
-                      className="fill-slate-400 hover:fill-primary"
-                    >
-                      <path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z" />
-                    </svg>
-                  </button>
-                </div>
-              </li>
-            )}
 
             <li>
               <Link

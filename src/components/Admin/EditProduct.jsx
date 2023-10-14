@@ -171,7 +171,7 @@ const EditFormComponent = ({ dataToEdit }) => {
             name="category"
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option hidden value={category}>Change Category</option>
+            <option hidden value={category._id}>{category.name}</option>
             {categories.map((item, key) => (
               <option key={key} value={item._id}>
                 {item.name}
