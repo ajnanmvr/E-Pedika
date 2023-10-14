@@ -5,11 +5,18 @@ import { Link } from "react-router-dom";
 const DataTable = ({ apiUrl }) => {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     // Fetch data from the API using axios
     fetchData();
   }, [apiUrl]);
+
+  useEffect(() => {
+    // Filter the data whenever searchText changes
+    filterData();
+  }, [searchText, data]);
+
   const fetchData = async () => {
     try {
       const response = await Axios.get(apiUrl);
@@ -17,6 +24,13 @@ const DataTable = ({ apiUrl }) => {
     } catch (error) {
       console.error(error.response);
     }
+  };
+
+  const filterData = () => {
+    const filtered = data.filter((item) =>
+      item.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setFilteredData(filtered);
   };
   const handleDelete = async (id) => {
     const shouldDelete = window.confirm(
@@ -59,7 +73,7 @@ const DataTable = ({ apiUrl }) => {
               <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
             </svg>
             New
-          </Link>
+            </Link>
         </div>
       </div>
       <table className="w-full bg-gray-50 rounded-xl overflow-hidden mt-2">
@@ -72,8 +86,15 @@ const DataTable = ({ apiUrl }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item,index) => (
-            <tr key={item._id} className={index % 2 === 0 ? "bg-gray-100 hover:bg-gray-200" : "hover:bg-gray-200"}>
+          {filteredData.map((item, index) => (
+            <tr
+              key={item._id}
+              className={
+                index % 2 === 0
+                  ? "bg-gray-100 hover:bg-gray-200"
+                  : "hover:bg-gray-200"
+              }
+            >           
               <td className="py-3 px-4 border">{item.name}</td>
               <td className="py-3 px-4 border">{item.category.name}</td>
               <td className="py-3 px-4 border">

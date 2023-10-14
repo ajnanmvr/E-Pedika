@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import Axios from "../../Axios";
 
 const LoginForm = () => {
@@ -21,54 +21,49 @@ const LoginForm = () => {
 
       localStorage.setItem("token", response.data.token);
       setLoading(false);
-      window.location.href = "/admin/data";
+      window.location.href = "/admin/dashboard";
     } catch (error) {
       setLoading(false);
-      // Display error message
       setError(error.response.data.error);
     }
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-cover bg-gradient-to-r from-[#eaeaea] to-[#e3f3ff]">
-      <form
-        className="max-w-md p-8 bg-white rounded-lg shadow-md"
-        onSubmit={handleSubmit}
-      >
-        {error && <div className="text-red-500 mb-4">{error}</div>}
-        <div className="mb-4">
-          <label className="block text-gray-700 text-xl">username:</label>
+    <div className="flex h-screen font-semibold justify-center  items-center">
+
+<div className="border p-10 rounded-xl border-primary flex flex-col gap-5">
+<img src="/logos/logo.png" alt="logo"  className="h-16 object-contain"/>
+      <form onSubmit={handleSubmit} className="w-64 flex flex-col gap-2">
+
+        <label>
+          Username
           <input
-            className="border rounded-lg py-2 px-3 w-full focus:outline-none focus:ring focus:border-blue-300"
             type="text"
+            name="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className="rounded-lg border border-gray-900 px-3 py-[6px] w-full"
           />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-xl">password:</label>
+        </label>
+        <label>
+          Password
           <input
-            className="border rounded-lg py-2 px-3 w-full focus:outline-none focus:ring focus:border-blue-300"
             type="password"
+            name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="rounded-lg border border-gray-900 px-3 py-[6px] w-full"
           />
-        </div>
+        </label>
+        {error && <div className="text-xs text-gray-600 text-center">{error}</div>}
+
         {loading ? (
-          <div
-            className="bg-gradient-to-r w-full from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300"
-          >
-          processing...
-          </div>
+          <div>processing...</div>
         ) : (
-          <button
-            className="bg-gradient-to-r w-full from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300"
-            type="submit"
-          >
-            Sign In
-          </button>
+          <button type="submit" className="rounded-lg border border-primary bg-primary text-white px-6 py-[6px] w-full">Sign In</button>
         )}
       </form>
+</div>
     </div>
   );
 };

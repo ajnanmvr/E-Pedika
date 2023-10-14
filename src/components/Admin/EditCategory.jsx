@@ -36,45 +36,44 @@ const EditCategoryForm = ({ apiUrl, category, onClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg p-8">
-        <h2 className="text-center font-bold text-2xl text-blue-900 uppercase mb-4">
+      <form
+        className=" flex  flex-col items-center border mt-2 overflow-hidden bg-gray-100 border-primary rounded-xl"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="p-4 text-lg bg-primary w-full text-white font-bold text-center">
           Edit Category
-        </h2>
-        <form onSubmit={handleSubmit}>
-          <label className="text-blue-900">
-            Name:
-            <input
-              className="border border-blue-900 rounded-md py-2 px-3 mt-2 focus:outline-none focus:ring focus:border-blue-300"
-              type="text"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter category name"
-            />
-          </label>
-          <br />
+        </h1>
 
-          <button
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300 mt-4"
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? "Updating..." : "Update Category"}
-          </button>
+        <div className="flex flex-col gap-2 justify-center items-center content-center w-[300px] h-[200px] ">
+          {errorMessage && <p>{errorMessage}</p>}
 
-          {successMessage && (
-            <p className="text-green-600 mt-2">{successMessage}</p>
-          )}
-          {errorMessage && <p className="text-red-600 mt-2">{errorMessage}</p>}
-        </form>
+          <input
+            className="px-3 py-2 rounded-xl border border-primary text-center"
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Enter category Name"
+          />
 
-        <button
-          className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-gray-300 mt-4"
-          onClick={onClose}
-        >
-          Cancel
-        </button>
-      </div>
+          <div className="flex gap-1">            <button
+              className="px-4 py-2 border-2 border-primary text-sm font-medium text-center text-primary bg-white inline-flex items-center gap-1 fill-white rounded-xl hover:bg-gray-200"
+              onClick={onClose}
+            >
+              Cancel
+            </button>
+            <button
+              className="px-4 py-2 border-2 border-primary text-sm font-medium text-center text-white bg-primary inline-flex items-center gap-1 fill-white rounded-xl hover:bg-indigo-600"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? "Updating..." : "Update"}
+            </button>
+
+
+          </div>
+        </div>
+      </form>
     </div>
   );
 };

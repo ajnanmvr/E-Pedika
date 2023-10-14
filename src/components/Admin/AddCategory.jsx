@@ -141,13 +141,14 @@ const AddCategory = ({ apiUrl }) => {
           onSubmit={handleSubmit}
         >
           <h1 className="py-2 px-4 bg-primary w-full text-white font-bold text-center">
+
             Add New Category
           </h1>
 
           <div className="flex flex-col gap-2 justify-center items-center content-center w-[300px] h-[200px] ">
             {errorMessage && <p>{errorMessage}</p>}
 
-
+            <svg xmlns="http://www.w3.org/2000/svg" className="fill-primary m-2 h-12 " viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
             <input
               className="px-3 py-2 rounded-xl border border-primary text-center"
               type="text"
@@ -158,7 +159,7 @@ const AddCategory = ({ apiUrl }) => {
             />
 
             <button
-              className="px-4 py-2 border-2 border-primary text-sm font-medium text-center text-white bg-primary inline-flex items-center gap-1 fill-white rounded-xl hover:bg-indigo-600"
+              className="px-4 py-2 mt-2 border-2 border-primary text-sm font-medium text-center text-white bg-primary inline-flex items-center gap-1 fill-white rounded-xl hover:bg-indigo-600"
               type="submit"
               disabled={loading}
             >
