@@ -4,13 +4,11 @@ import { useParams } from "react-router-dom";
 
 const EditFormComponent = ({ dataToEdit }) => {
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [thumbnail, setThumbnail] = useState(null);
-  const [thumbnailPreview, setThumbnailPreview] = useState(null); // For image preview
-  const [loading, setLoading] = useState(false);
   const [description, setDescription] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [thumbnail, setThumbnail] = useState(null);
+
   const [category, setCategory] = useState("");
   const { id } = useParams();
   const [categories, setCategories] = useState([]);
@@ -39,11 +37,13 @@ const EditFormComponent = ({ dataToEdit }) => {
         const dataToEdit = response.data; // Assuming the API returns an object with the website details
         // Set the state variables with the data received from the backend
         setName(dataToEdit?.name || "");
-        setImage(dataToEdit?.image || "");
         setDescription(dataToEdit?.description || "");
         setSlug(dataToEdit?.slug || "");
         setPrice(dataToEdit?.price || "");
+        setCategory(dataToEdit?.category || "");
         setDiscountPrice(dataToEdit?.discountPrice || "");
+        setSpecs(dataToEdit?.specs || "");
+        setThumbnail(dataToEdit?.thumbnail || "");
       } catch (error) {
         console.error(error);
       }
@@ -59,9 +59,6 @@ const EditFormComponent = ({ dataToEdit }) => {
       case "name":
         setName(value);
         break;
-      case "image":
-        setImage(value);
-        break;
       case "description":
         setDescription(value);
         break;
@@ -74,23 +71,15 @@ const EditFormComponent = ({ dataToEdit }) => {
       case "price":
         setPrice(value);
         break;
+      case "specs":
+        setSpecs(value);
+        break;
       case "discountPrice":
         setDiscountPrice(value);
         break;
       default:
         break;
     }
-  };
-  const handleFileInputChange = (e) => {
-    const file = e.target.files[0];
-    setThumbnail(file);
-
-    // For image preview
-    const reader = new FileReader();
-    reader.onload = () => {
-      setThumbnailPreview(reader.result);
-    };
-    reader.readAsDataURL(file);
   };
 
   // Handle specs input changes
@@ -111,10 +100,10 @@ const EditFormComponent = ({ dataToEdit }) => {
 
     const data = {
       name,
-      image,
       description,
       slug,
       price,
+      specs,
       discountPrice,
       category,
     };
@@ -182,7 +171,7 @@ const EditFormComponent = ({ dataToEdit }) => {
             name="category"
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option hidden>Select Category</option>
+            <option hidden value={category}>Change Category</option>
             {categories.map((item, key) => (
               <option key={key} value={item._id}>
                 {item.name}
@@ -258,46 +247,31 @@ const EditFormComponent = ({ dataToEdit }) => {
           </button>
         </div>
         <div className="flex">
-          <input
-            type="file"
-            name="thumbnail"
-            className="flex gap-1 items-center rounded-lg border-2 border-black px-3 py-[6px] mr-1 mb-1 flex-1 file:bg-white file:rounded-lg file:text-primary file:border-nprimary  file:px-2 file:py-1 file:mr-2"
-            onChange={handleFileInputChange}
-          />
-          {loading ? (
-            <div className="rounded-lg border-2 border-primary bg-primary text-white px-6 py-[6px] mr-1 mb-1">
-              Processing...
-            </div>
-          ) : (
-            <button
-              type="submit"
-              className="rounded-lg border-2 border-primary bg-primary text-white px-6 py-[6px] mr-1 mb-1"
-            >
-              Submit
-            </button>
-          )}
+        <button
+            type="button"
+            className="rounded-lg flex-1 border-2 border-primary  text-primary px-6 py-[6px] mr-1 mb-1"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="rounded-lg border-2 border-primary bg-primary text-white px-6 py-[6px] mr-1 mb-1"
+          >
+            Submit
+          </button>
         </div>
+
         {successMessage && <p className="">{successMessage}</p>}
         {errorMessage && <p className="">{errorMessage}</p>}
       </div>
       <div className="h-[500px] w-[500px]">
-        {thumbnailPreview ? (
-          <label htmlFor="thumbnail">
-            <img
-              src={thumbnailPreview}
-              alt="Thumbnail Preview"
-              className="h-full w-full object-cover rounded-lg"
-            />
-          </label>
-        ) : (
-          <label htmlFor="thumbnail">
-            <img
-              src="https://cdn.pixabay.com/photo/2018/11/13/21/44/instagram-3814061_1280.png"
-              alt="Thumbnail Preview"
-              className="h-full w-full object-cover rounded-lg"
-            />
-          </label>
-        )}
+        <label htmlFor="thumbnail">
+          <img
+            src={thumbnail}
+            alt="Thumbnail Preview"
+            className="h-full w-full object-cover rounded-lg"
+          />
+        </label>
       </div>
     </form>
   );
