@@ -132,7 +132,7 @@ const EditFormComponent = ({ dataToEdit }) => {
     >
       <div className="p-3 h-[500px] w-[500px] font-semibold flex flex-col gap-2 overflow-y-auto no-scrollbar">
         <h1 className="text-5xl font-extrabold text-primary -mt-5">
-          Add Product
+          Edit Item
         </h1>
         <label>
           Name

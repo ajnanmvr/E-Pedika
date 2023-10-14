@@ -1,12 +1,16 @@
 import React from "react";
 import Slider from "./Slider";
 import SmallList from "./SmallList";
+import ShopByCategory from "./ShopByCategory";
 
-function Home() {
+
+function Home({fullData}) {
   return (
     <div className="min-h-screen">
       <Slider />
-      <SmallList heading={"Latest Products"} />
+      <ShopByCategory/>
+      <SmallList heading={"Latest Products"} sortOption={"newest"} fullData={fullData} />
+      <SmallList heading={"Special Offer"} sortOption={"price-asc"} fullData={fullData} />
     </div>
   );
 }

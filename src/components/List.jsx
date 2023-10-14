@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import Axios from "../Axios";
 
-function List({ category }) {
+function List({ fullData, category }) {
   const [cards, setCards] = useState([]);
   const [sortedCards, setSortedCards] = useState([]);
   const [sortOption, setSortOption] = useState("a-z");
 
   useEffect(() => {
-    Axios.get("/data")
-      .then((response) => {
-        const fullData = response.data.data;
-
-        if (category === "All") {
-          setCards(fullData);
-        } else {
-          const filteredData = fullData.filter((card) => card.category.name === category);
-          setCards(filteredData);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (category === "All") {
+      setCards(fullData);
+    } else {
+      const filteredData = fullData.filter(
+        (card) => card.category.name === category
+      );
+      setCards(filteredData);
+    }
   }, [category]);
 
   useEffect(() => {
@@ -30,21 +23,33 @@ function List({ category }) {
 
   const sortCards = () => {
     const sortedCardsCopy = [...cards];
-  
+
     if (sortOption === "a-z") {
-      sortedCardsCopy.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+      sortedCardsCopy.sort((a, b) =>
+        (a.name || "").localeCompare(b.name || "")
+      );
     } else if (sortOption === "z-a") {
-      sortedCardsCopy.sort((a, b) => (b.name || "").localeCompare(a.name || ""));
+      sortedCardsCopy.sort((a, b) =>
+        (b.name || "").localeCompare(a.name || "")
+      );
     } else if (sortOption === "newest") {
-      sortedCardsCopy.sort((a, b) => (new Date(b.createdAt) || 0) - (new Date(a.createdAt) || 0));
+      sortedCardsCopy.sort(
+        (a, b) => (new Date(b.createdAt) || 0) - (new Date(a.createdAt) || 0)
+      );
     } else if (sortOption === "oldest") {
-      sortedCardsCopy.sort((a, b) => (new Date(a.createdAt) || 0) - (new Date(b.createdAt) || 0));
-    }else if (sortOption === "price-asc") {
-      sortedCardsCopy.sort((a, b) => (a.discountPrice || 0) - (b.discountPrice || 0));
+      sortedCardsCopy.sort(
+        (a, b) => (new Date(a.createdAt) || 0) - (new Date(b.createdAt) || 0)
+      );
+    } else if (sortOption === "price-asc") {
+      sortedCardsCopy.sort(
+        (a, b) => (a.discountPrice || 0) - (b.discountPrice || 0)
+      );
     } else if (sortOption === "price-desc") {
-      sortedCardsCopy.sort((a, b) => (b.discountPrice || 0) - (a.discountPrice || 0));
+      sortedCardsCopy.sort(
+        (a, b) => (b.discountPrice || 0) - (a.discountPrice || 0)
+      );
     }
-  
+
     setSortedCards(sortedCardsCopy);
   };
 
