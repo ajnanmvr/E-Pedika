@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
 function SmallList({ heading, fullData, sortOption }) {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [sortedCards, setSortedCards] = useState([]);
 
   useEffect(() => {
@@ -39,16 +43,38 @@ function SmallList({ heading, fullData, sortOption }) {
 
     setSortedCards(sortedCardsCopy);
   };
+  // Number of slides and delay (in milliseconds) between each slide
+  const numSlides = 3;
+  const autoSlideDelay = 3000;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Increment the currentSlide in a cyclic manner
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % numSlides);
+    }, autoSlideDelay);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: true, // Enable auto-slide
+    autoplaySpeed: autoSlideDelay, // Set the delay
+  };
   return (
-    <section className="flex justify-center items-center content-center flex-col my-10">
+    <section className="my-20">
       <h1 className="text-center font-bold text-3xl text-black">{heading}</h1>
-        <div className="flex justify-center gap-5 flex-wrap p-16">
-          {sortedCards.length > 0 ? (
-            sortedCards.map((card) => <Card key={card._id} card={card} />)
-          ) : (
-            <p>Loading data..</p>
-          )}
-        </div>
+      <div className="px-32 py-20">
+        <Slider {...settings}>
+          {sortedCards.map((item, key) => (
+            <Card key={key} card={item} />
+          ))}
+        </Slider>
+      </div>
     </section>
   );
 }

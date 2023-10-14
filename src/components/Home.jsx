@@ -11,6 +11,8 @@ function Home({fullData}) {
       <ShopByCategory/>
       <SmallList heading={"Latest Products"} sortOption={"newest"} fullData={fullData} />
       <SmallList heading={"Lowest in Price"} sortOption={"price-asc"} fullData={fullData} />
+      <SmallList heading={"Highest in Price"} sortOption={"price-desc"} fullData={fullData} />
+      <SmallList heading={"Heritage Products"} sortOption={"oldest"} fullData={fullData} />
     </div>
   );
 }
