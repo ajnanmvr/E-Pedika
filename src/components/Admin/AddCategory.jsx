@@ -45,7 +45,6 @@ const AddCategory = ({ apiUrl }) => {
       setName("");
 
       // Display success message
-      setSuccessMessage("Category added successfully.");
       setErrorMessage(""); // Clear any previous error message
       fetchCategories();
     } catch (error) {
@@ -64,13 +63,29 @@ const AddCategory = ({ apiUrl }) => {
   useEffect(() => {
     fetchCategories();
   }, []);
+  const handleDelete = async (id) => {
+    const shouldDelete = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
+    if (shouldDelete) {
+      try {
+        const response = await Axios.delete(`/category/${id}`);
+        console.log(response.data);
+
+        // If the deletion is successful, update the local state or perform any other actions
+        fetchCategories(); // Refresh the data after deletion
+      } catch (error) {
+        console.error(error.response);
+      }
+    }
+  };
   return (
     <>
       <div className="flex justify-center content-stretch items-streach p-16 gap-10">
         <table className="w-full  bg-gray-50 rounded-xl overflow-hidden mt-2">
           <thead>
             <tr>
-              <th className="py-2 px-4 bg-primary text-white">Index</th>
+              <th className="py-2 px-4 bg-primary text-white">Sl.No</th>
               <th className="py-2 px-4 bg-primary text-white">Name</th>
               <th className="py-2 px-4 bg-primary text-white">Actions</th>
             </tr>
@@ -78,14 +93,14 @@ const AddCategory = ({ apiUrl }) => {
           <tbody>
             {categories.map((category, index) => (
               <tr
-                key={category.id}
+                key={index}
                 className={
                   index % 2 === 0
                     ? "bg-gray-100 hover:bg-gray-200"
                     : "hover:bg-gray-200"
                 }
               >
-                <td className="py-3 px-4 border text-center">{index + 1}</td>
+                <td className="py-3 px-4 border text-center w-10">{index + 1}</td>
                 <td className="py-3 px-4 border">{category.name}</td>
                 <td className="py-3 px-2 border">
                   <div className="flex gap-5 justify-center">
@@ -103,7 +118,7 @@ const AddCategory = ({ apiUrl }) => {
                     </p>
 
                     <button
-                      // onClick={() => handleDelete(item._id)}
+                      onClick={() => handleDelete(category._id)}
                       className="fill-primary hover:fill-red-600"
                     >
                       <svg
@@ -130,6 +145,9 @@ const AddCategory = ({ apiUrl }) => {
           </h1>
 
           <div className="flex flex-col gap-2 justify-center items-center content-center w-[300px] h-[200px] ">
+            {errorMessage && <p>{errorMessage}</p>}
+
+
             <input
               className="px-3 py-2 rounded-xl border border-primary text-center"
               type="text"
@@ -138,13 +156,7 @@ const AddCategory = ({ apiUrl }) => {
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter category Name"
             />
-            {errorMessage && (
-              <p>{errorMessage}</p>
-            )}
 
-{successMessage && (
-  <p>{successMessage}</p>
-)}
             <button
               className="px-4 py-2 border-2 border-primary text-sm font-medium text-center text-white bg-primary inline-flex items-center gap-1 fill-white rounded-xl hover:bg-indigo-600"
               type="submit"
@@ -153,7 +165,6 @@ const AddCategory = ({ apiUrl }) => {
               {loading ? "Adding..." : "Confirm"}
             </button>
           </div>
-
         </form>
 
         {/* Render the EditCategoryForm component in a pop-up */}

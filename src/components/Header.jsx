@@ -16,7 +16,7 @@ function Header() {
   };
   return (
     <header
-      className={`flex ${
+      className={`flex z-50 ${
         path === "/"
           ? "flex-col gap-6 justify-center p-12 text-lg"
           : "justify-between px-12 py-8 sticky top-0"
