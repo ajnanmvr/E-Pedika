@@ -7,7 +7,7 @@ export default function ProductDetail() {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    Axios.get(`/data/${slug}`)
+    Axios.get(`/data/s/${slug}`)
       .then((response) => {
         setProduct(response.data);
         console.log(response.data);

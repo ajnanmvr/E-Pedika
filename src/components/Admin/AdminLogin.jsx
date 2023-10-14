@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import Axios from "../../Axios";
-import { UserContext } from "../../contexts/UserContext";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");

@@ -29,7 +29,7 @@ useEffect(() => {
 
     const fetchData = async () => {
       try {
-        const response = await Axios.get(`/data/${id}`);
+        const response = await Axios.get(`/data/i/${id}`);
         const dataToEdit = response.data; // Assuming the API returns an object with the website details
         // Set the state variables with the data received from the backend
         setName(dataToEdit?.name || "");
