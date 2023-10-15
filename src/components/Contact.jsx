@@ -5,7 +5,7 @@ function Contact() {
     <div className="flex justify-center items-center content-center gap-5 pt-10 pb-16">
       <div className="h-[500px] w-[500px]">
         <img
-          src="https://pbs.twimg.com/profile_images/913809136315281408/hVDPZGi5_400x400.jpg"
+          src="/asas.jpg"
           alt="Thumbnail"
           className="h-full w-full object-cover"
         />

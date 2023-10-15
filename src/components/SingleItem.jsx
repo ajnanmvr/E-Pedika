@@ -18,7 +18,19 @@ export default function ProductDetail() {
   }, [slug]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center gap-20 pt-10 pb-16">
+        <div className="h-[500px] w-[500px] bg-gray-300 animate-pulse rounded-lg cursor-zoom-in"></div>
+
+        <div className="p-3 h-[500px] w-[500px]">
+          <div className="bg-gray-300 h-8 w-3/4 mb-4 animate-pulse rounded-lg"></div>
+          <div className="bg-gray-300 h-6 w-1/2 mb-4 animate-pulse rounded-lg"></div>
+          <div className="bg-gray-300 h-4 w-2/3 mb-4 animate-pulse rounded-lg"></div>
+          <div className="bg-gray-300 h-4 w-3/4 mb-4 animate-pulse rounded-lg"></div>
+          <div className="bg-gray-300 h-4 w-2/5 animate-pulse rounded-lg"></div>
+        </div>
+      </div>
+    );
   }
 
   return (

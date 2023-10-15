@@ -3,6 +3,7 @@ import Card from "./Card";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import CardSkeleton from "./CardSkeleton";
 
 function SmallList({ heading, fullData, sortOption }) {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -43,9 +44,10 @@ function SmallList({ heading, fullData, sortOption }) {
 
     setSortedCards(sortedCardsCopy);
   };
+
   // Number of slides and delay (in milliseconds) between each slide
   const numSlides = 3;
-  const autoSlideDelay = 3000;
+  const autoSlideDelay = 2500;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -59,21 +61,32 @@ function SmallList({ heading, fullData, sortOption }) {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 300,
+    speed: 350,
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true, // Enable auto-slide
     autoplaySpeed: autoSlideDelay, // Set the delay
   };
+
   return (
     <section className="my-20">
       <h1 className="text-center font-bold text-3xl text-black">{heading}</h1>
       <div className="px-32 py-20">
-        <Slider {...settings}>
-          {sortedCards.map((item, key) => (
-            <Card key={key} card={item} />
-          ))}
-        </Slider>
+        {fullData.length !== 0 ? (
+          <Slider {...settings}>
+            {sortedCards.map((item, key) => (
+              <Card key={key} card={item} />
+            ))}
+          </Slider>
+        ) : (
+          <div className="flex justify-center gap-5 flex-wrap">
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </div>
+        )}
       </div>
     </section>
   );

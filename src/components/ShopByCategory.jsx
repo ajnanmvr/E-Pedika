@@ -22,7 +22,7 @@ function ShopByCategory() {
                 <p className="text-xl font-bold text-white">Essentials</p>
               </div>
             </div>
-          </Link>{" "}
+          </Link>
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
@@ -37,7 +37,7 @@ function ShopByCategory() {
                 <p className="text-xl font-bold text-white">Stationary</p>
               </div>
             </div>
-          </Link>{" "}
+          </Link>
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
@@ -52,7 +52,7 @@ function ShopByCategory() {
                 <p className="text-xl font-bold text-white">Books</p>
               </div>
             </div>
-          </Link>{" "}
+          </Link>
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
@@ -67,7 +67,7 @@ function ShopByCategory() {
                 <p className="text-xl font-bold text-white">Tea Stall</p>
               </div>
             </div>
-          </Link>{" "}
+          </Link>
         </motion.div>
       </div>
     </section>

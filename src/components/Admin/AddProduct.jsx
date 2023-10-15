@@ -285,7 +285,7 @@ const FormComponent = ({ apiUrl }) => {
           <label htmlFor="thumbnail">
 
           <img
-            src="https://cdn.pixabay.com/photo/2018/11/13/21/44/instagram-3814061_1280.png"
+            src="/addbg.jpg"
             alt="Thumbnail Preview"
             className="h-full w-full object-cover rounded-lg"
           /></label>
