@@ -69,7 +69,7 @@ function List({ fullData, category }) {
           onChange={(e) => setFilterText(e.target.value)}
         />
 
-        <div className="flex gap-2 justify-between items-center ">
+        <div className="flex gap-2 justify-between items-center group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="1em"
@@ -81,7 +81,7 @@ function List({ fullData, category }) {
           <select
             onChange={(e) => setSortOption(e.target.value)}
             value={sortOption}
-            className="rounded-lg border-2 border-gray-900 border-dashed px-3 py-2 transition-transform duration-300 transform hover:scale-[101%]"
+            className="rounded-lg border-2 border-gray-900 border-dashed px-3 py-2 transition-transform duration-300 transform group-hover:scale-[101%]"
           >
             <option value="a-z">A-Z</option>
             <option value="z-a">Z-A</option>

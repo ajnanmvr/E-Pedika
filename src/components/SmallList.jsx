@@ -69,7 +69,8 @@ function SmallList({ heading, fullData, sortOption }) {
   };
 
   return (
-    <section className="my-20">
+<section className="flex justify-center">
+<div className="my-20 w-[1510px]">
       <h1 className="text-center font-bold text-3xl text-black">{heading}</h1>
       <div className="px-32 py-20">
         {fullData.length !== 0 ? (
@@ -88,7 +89,8 @@ function SmallList({ heading, fullData, sortOption }) {
           </div>
         )}
       </div>
-    </section>
+    </div>
+</section>
   );
 }
 

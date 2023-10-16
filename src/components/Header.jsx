@@ -51,7 +51,7 @@ function Header() {
                   to={`/items`}
                   className={`${
                     path === "/items" && "fill-primary text-primary"
-                  } flex cursor-pointer items-center gap-1`}
+                  } flex cursor-pointer items-center hover:fill-primary hover:text-primary gap-1`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +76,7 @@ function Header() {
                   to={`/essentials`}
                   className={`${
                     path === "/essentials" && "fill-primary text-primary"
-                  } flex cursor-pointer items-center gap-1`}
+                  } flex cursor-pointer items-center hover:fill-primary hover:text-primary gap-1`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,7 @@ function Header() {
                   to={`/stationary`}
                   className={`${
                     path === "/stationary" && "fill-primary text-primary"
-                  } flex cursor-pointer items-center gap-1`}
+                  } flex cursor-pointer items-center hover:fill-primary hover:text-primary gap-1`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +126,7 @@ function Header() {
                   to={`/book-cell`}
                   className={`${
                     path === "/book-cell" && "fill-primary text-primary"
-                  } flex cursor-pointer items-center gap-1`}
+                  } flex cursor-pointer items-center hover:fill-primary hover:text-primary gap-1`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +151,7 @@ function Header() {
                   to={`/tea-stall`}
                   className={`${
                     path === "/tea-stall" && "fill-primary text-primary"
-                  } flex cursor-pointer items-center gap-1`}
+                  } flex cursor-pointer items-center hover:fill-primary hover:text-primary gap-1`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,7 @@ function Header() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                whileHover={{ scale: 1.04 }}
+                whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
@@ -176,7 +176,7 @@ function Header() {
                   to={`/search`}
                   className={`${
                     path === "/search" && "fill-primary text-primary"
-                  } flex cursor-pointer items-center mx-2`}
+                  } flex cursor-pointer items-center hover:fill-primary hover:text-primary mx-2`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -201,7 +201,7 @@ function Header() {
                   to={`/contact-us`}
                   className={`${
                     path === "/contact-us" && "fill-primary text-primary"
-                  } flex cursor-pointer items-center gap-1`}
+                  } flex cursor-pointer items-center hover:fill-primary hover:text-primary gap-1`}
                 >
                   Contact Us
                 </Link>
@@ -225,7 +225,7 @@ function Header() {
                         "fill-primary text-primary border-primary"
                       } ${
                         path !== "/admin/dashboard" && "border-black"
-                      } flex cursor-pointer items-center border-2 rounded-full py-1 px-3 gap-1`}
+                      } flex cursor-pointer items-center hover:fill-primary hover:text-primary border-2 rounded-full py-1 px-3 gap-1`}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -241,6 +241,13 @@ function Header() {
                 </li>
 
                 <li>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                  >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     onClick={handleLogout}
@@ -250,6 +257,7 @@ function Header() {
                   >
                     <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z" />
                   </svg>
+                  </motion.div>
                 </li>
               </>
             ) : (
@@ -266,7 +274,7 @@ function Header() {
                     className={`${
                       path === "/login" &&
                       "fill-primary text-primary border-primary"
-                    } flex cursor-pointer items-center border-2 rounded-full p-2 mx-2`}
+                    } flex cursor-pointer items-center hover:fill-primary hover:text-primary border-2 border-black hover:border-primary rounded-full p-2 mx-2`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
