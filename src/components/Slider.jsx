@@ -15,7 +15,7 @@ function Carousel() {
 
   return (
     <section className="flex justify-center">
-      <div className="mx-24  max-w-[1510px] mb-24">
+      <div className="max-w-[85vw] mb-24">
         <Slider {...settings}>
           <div className="rounded-[100px] h-96 border-2 border-white overflow-hidden">
             <div className="bg-primary  text-white flex items-center w-full -mt-24">
