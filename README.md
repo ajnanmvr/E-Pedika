@@ -2,19 +2,19 @@
 
 Welcome to our Online Product View Platform, a cross-platform web application crafted with React.js, styled with Tailwind CSS. This powerful solution is designed to streamline and enhance the management of Online Shopping, offering a seamless experience for users across various devices and operating systems.
 
-<p><img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/c8fbf4c1-913e-48da-a4eb-cdb81b564fec" width="1000"></p>
+<p><img src="https://github.com/ajnanmvr/E-Pedika/assets/94433947/84e51c5b-e020-4eb3-b191-c731e61f339c" width="1000"></p>
 
 
 ## Live Links 
 ### Client 
 
-- Github Repo : https://github.com/ajnanmvr/streamlining-data-management-client/
-- Hosted : https://streamlining-data-management-client.vercel.app/
+- Github Repo : https://github.com/ajnanmvr/E-Pedika
+- Hosted : https://e-pedika.vercel.app/
 
 ### Server
 
-- Github Repo : https://github.com/MuhammedHashimT/streamlining-data-management-api/
-- Hosted : https://gta-rho.vercel.app/	
+- Github Repo : https://github.com/ajnanmvr/E-Pedika-Server
+- Hosted : https://e-pedika-server.vercel.app/
 
 
 ## Getting Started
@@ -23,12 +23,12 @@ Follow these instructions to build and run the project.
 
 ### Setup React Native
 
-A detailed guide for setting up Next.JS can be found [here](https://nextjs.org/docs).
+A detailed guide for setting up React.JS can be found [here](https://legacy.reactjs.org/docs/getting-started.html).
 
 ### Setup Project
 
 - Clone this repository using `git clone https://github.com/ajnanmvr/streamlining-data-management-client.git`.
-- `cd` into `streamlining-data-management-client`.
+- `cd` into `E-Pedika`.
 - Run `npm install` to install project dependencies.
 
 
@@ -37,20 +37,18 @@ A detailed guide for setting up Next.JS can be found [here](https://nextjs.org/d
 First, run the development server:
 
 ```bash
-npm run dev
+npm start
 # or
-yarn dev
+yarn start
 # or
-pnpm dev
+pnpm start
 # or
-bun dev
+bun start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+You can start editing the pages. The page auto-updates as you edit the file.
 
 ## Key Features:
 
@@ -155,17 +153,17 @@ Feel free to explore the platform and make the most of its capabilities. For any
 ## Screen Shots
 
 <p>
-<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/b1cd5a8d-d857-4780-949f-8b98816329c2" alt="screenshot" width="300">
-<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/11cdc8e0-57f5-4991-9286-ace2918b0b28" alt="screenshot" width="300">
-<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/2ec77f9c-16ef-4b48-a5f9-0da3d38bbb80" alt="screenshot" width="300">
-<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/c26a730a-477b-48ef-bda4-4d2f65511108" alt="screenshot" width="300">
-<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/046d4677-239e-45fb-b237-10e3fcb7c7c3" alt="screenshot" width="300">
-  <img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/5cde66ab-cb18-4c7c-9214-ea7cd63a4af3" alt="screenshot" width="300">
-<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/39b4c23d-6873-48a9-9138-7c82315b97aa" alt="screenshot" width="300">
-<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/03ec3c1b-3f67-4183-8507-7fa60bfa0f47" alt="screenshot" width="300">
-<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/bcb7c308-894b-44de-93a7-ffd32692453b" alt="screenshot" width="300">
+<img src="https://github.com/ajnanmvr/E-Pedika/assets/94433947/544c27d8-0e64-4886-9b9d-ec4f0fc00937" alt="screen-shot" width="300">
+<img src="https://github.com/ajnanmvr/E-Pedika/assets/94433947/49c57ed8-96df-4b07-8678-e6e736ac43c5" alt="screen-shot" width="300">
+<img src="https://github.com/ajnanmvr/E-Pedika/assets/94433947/26ba8562-c568-4454-a511-79ae71944d0b" alt="screen-shot" width="300">
+<img src="https://github.com/ajnanmvr/E-Pedika/assets/94433947/09428355-679d-472d-bd44-621e9e010567" alt="screen-shot" width="300">
+<img src="https://github.com/ajnanmvr/E-Pedika/assets/94433947/6be8c8cf-f91c-4b31-b82e-a7b21d0fd1dd" alt="screen-shot" width="300">
+<img src="https://github.com/ajnanmvr/E-Pedika/assets/94433947/266fb044-7d6d-4925-90f9-a7233e803be7" alt="screen-shot" width="300">
+<img src="https://github.com/ajnanmvr/E-Pedika/assets/94433947/320e62ac-02c7-45bb-ab04-e8e31993ad1e" alt="screen-shot" width="300">
+<img src="https://github.com/ajnanmvr/E-Pedika/assets/94433947/7af338fc-18aa-4aac-bd21-abfc3c7dc6d5" alt="screen-shot" width="300">
+<img src="https://github.com/ajnanmvr/E-Pedika/assets/94433947/699f18ba-1648-46b0-94c7-c6f5664ba6cf" alt="screen-shot" width="300">
 </p>
 
 # Community
 
-We welcome contributions and feedback. Feel free to open an [issue](https://github.com/ajnanmvr/streamlining-data-management-client/issues).
+We welcome contributions and feedback. Feel free to open an [issue](https://github.com/ajnanmvr/E-Pedika/issues).
