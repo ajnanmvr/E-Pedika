@@ -1,4 +1,4 @@
-# Online Product View Platform
+# E Pedika
 
 E pedika is a web application designed for viewing items in a shop. It provides a user-friendly interface to manage categories and products, filter and sort products, and allows admin users to perform CRUD operations on categories and products.
 
